@@ -1,0 +1,12 @@
+{
+  "name": "checklist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "npx tsc --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
