@@ -1,35 +1,43 @@
 const taskNameInputElement = document.querySelector("#name");
 const addButtonElement = document.querySelector("button");
 const tasksContainerElement = document.querySelector(".tasks");
+const catgories = ["general", "work", "sport", "dog"];
 const tasks = [
     {
-        name: "Buy food",
+        title: "Buy food",
         done: false,
+        category: "general",
     },
     {
-        name: "Dog training",
+        title: "Dog training",
         done: true,
+        category: "dog",
     },
     {
-        name: "Run",
+        title: "Run",
         done: false,
+        category: "sport",
     },
     {
-        name: "Bike",
+        title: "Bike",
         done: false,
+        category: "sport",
     },
 ];
 const render = () => {
     tasksContainerElement.innerHTML = "";
     tasks.forEach((task, index) => {
         const taskElement = document.createElement("li");
+        if (task.category) {
+            taskElement.classList.add(task.category);
+        }
         const id = `task-${index}`;
         const labelElement = document.createElement("label");
-        labelElement.innerText = task.name;
+        labelElement.innerText = task.title;
         labelElement.setAttribute("for", id);
         const checkboxElement = document.createElement("input");
         checkboxElement.type = "checkbox";
-        checkboxElement.name = task.name;
+        checkboxElement.name = task.title;
         checkboxElement.id = id;
         checkboxElement.checked = task.done;
         checkboxElement.addEventListener("change", () => {
@@ -40,12 +48,12 @@ const render = () => {
         tasksContainerElement.appendChild(taskElement);
     });
 };
-const addTask = (taskName) => {
-    tasks.push({ name: taskName, done: false });
+const addTask = (task) => {
+    tasks.push(task);
 };
 addButtonElement.addEventListener("click", (e) => {
     e.preventDefault();
-    addTask(taskNameInputElement.value);
+    addTask({ title: taskNameInputElement.value, done: false });
     render();
 });
 render();

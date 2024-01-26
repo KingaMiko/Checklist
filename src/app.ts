@@ -2,25 +2,34 @@ const taskNameInputElement: HTMLInputElement = document.querySelector("#name");
 const addButtonElement: HTMLButtonElement = document.querySelector("button");
 const tasksContainerElement: HTMLElement = document.querySelector(".tasks");
 
-const tasks: {
-  name: string;
+interface Task {
+  title: string;
   done: boolean;
-}[] = [
+  category?: string;
+}
+
+const catgories: string[] = ["general", "work", "sport", "dog"];
+
+const tasks: Task[] = [
   {
-    name: "Buy food",
+    title: "Buy food",
     done: false,
+    category: "general",
   },
   {
-    name: "Dog training",
+    title: "Dog training",
     done: true,
+    category: "dog",
   },
   {
-    name: "Run",
+    title: "Run",
     done: false,
+    category: "sport",
   },
   {
-    name: "Bike",
+    title: "Bike",
     done: false,
+    category: "sport",
   },
 ];
 
@@ -28,13 +37,16 @@ const render = () => {
   tasksContainerElement.innerHTML = "";
   tasks.forEach((task, index) => {
     const taskElement: HTMLElement = document.createElement("li");
+    if (task.category) {
+      taskElement.classList.add(task.category);
+    }
     const id: string = `task-${index}`;
     const labelElement: HTMLLabelElement = document.createElement("label");
-    labelElement.innerText = task.name;
+    labelElement.innerText = task.title;
     labelElement.setAttribute("for", id);
     const checkboxElement: HTMLInputElement = document.createElement("input");
     checkboxElement.type = "checkbox";
-    checkboxElement.name = task.name;
+    checkboxElement.name = task.title;
     checkboxElement.id = id;
     checkboxElement.checked = task.done;
     checkboxElement.addEventListener("change", () => {
@@ -48,13 +60,13 @@ const render = () => {
   });
 };
 
-const addTask = (taskName: string) => {
-  tasks.push({ name: taskName, done: false });
+const addTask = (task: Task) => {
+  tasks.push(task);
 };
 
 addButtonElement.addEventListener("click", (e: Event) => {
   e.preventDefault();
-  addTask(taskNameInputElement.value);
+  addTask({ title: taskNameInputElement.value, done: false });
   render();
 });
 
