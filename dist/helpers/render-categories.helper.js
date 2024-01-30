@@ -1,18 +1,19 @@
+import { Category } from "../types/types.js";
 const handleCategoryChange = (category) => {
-    if (category === "general") {
+    if (category === Category.GENERAL) {
         console.log("category: general");
     }
-    else if (category === "dog") {
+    else if (category === Category.DOG) {
         alert("It's time for yor dog!");
     }
-    else if (category === "sport") {
+    else if (category === Category.SPORT) {
         console.log("category: sport");
     }
-    else if (category === "work") {
+    else if (category === Category.WORK) {
         console.log("category: work");
         alert("WORK HARD!");
     }
-    else if (category === "social") {
+    else if (category === Category.SOCIAL) {
         console.log("category: social");
     }
     else {
