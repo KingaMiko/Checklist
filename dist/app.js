@@ -46,3 +46,12 @@ addButtonElement.addEventListener("click", (e) => {
 addTask({ title: "Handling training", category: "dog", done: false });
 renderCategories(categories, categoriesConteinerElement, updtateSelectedCategory);
 renderTasks(tasks, tasksContainerElement);
+let get = (response) => response;
+const logFixed = (v) => {
+    console.log(v.toFixed());
+};
+//logFixed(2.1);
+let value = get(2.3);
+if (typeof value === "number") {
+    logFixed(value);
+}
