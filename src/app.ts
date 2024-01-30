@@ -10,7 +10,7 @@ const categoriesConteinerElement: HTMLElement =
 
 let selectedCategory: Category;
 
-const categories: Category[] = ["general", "work", "sport", "dog"];
+const categories: Category[] = ["general", "work", "sport", "dog", "social"];
 
 const tasks: Task[] = [
   {
